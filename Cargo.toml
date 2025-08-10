@@ -1,5 +1,5 @@
 [package]
-name = "rusty-playground"
+name = "rustyplayground"
 version = "0.0.0"
 edition = "2024"
 

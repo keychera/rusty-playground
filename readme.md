@@ -1,4 +1,6 @@
-# rusty
+# rusty + javy
+
+exploring project panama
 
 journey
 - https://www.rust-lang.org/learn/get-started
@@ -91,3 +93,27 @@ journey
         ```
 
 - next, panama ep 2
+
+    - calling from java, from the article, modified
+    ```shell
+    java --enable-preview --enable-native-access=ALL-UNNAMED -Djava.library.path=./target/debug -cp ./target/java-classes HelloRustFromJava.java
+    ```
+
+    - still error, moving to https://github.com/openjdk/jextract/blob/master/doc/GUIDE.md
+
+    - ohh, jextract creates .java file, I have to compile them first. ref: https://github.com/openjdk/jextract/blob/master/samples/helloworld/compilesource.sh
+
+    IT WORKS!!!!!!!
+
+# working steps
+
+```shell
+cargo clean
+cargo build
+
+jextract --include-dir target/headers --output java/src --target-package self.chera --library rustyplayground target/headers/lib.h --use-system-load-library
+
+javac --source=22 -d java/classes java/src/self/chera/*.java
+
+java --enable-preview --enable-native-access=ALL-UNNAMED -Djava.library.path=./target/debug -cp ./java/classes HelloRustFromJava.java
+```
