@@ -32,4 +32,16 @@ journey
     Hello, Rusty world!
     ```
 
-- next step, egui
+- egui
+    - cargo add egui
+    - copy example from egui readme
+        - `cargo run` -> error
+    - copy example from https://github.com/emilk/egui/blob/main/examples/hello_world/src/main.rs
+        - `cargo run` -> error
+    - cargo add eframe
+        - comment out `env_logger::init()`
+        - `cargo run` ->
+
+        ![hello egui!](res/image.png)
+
+- next, panama
