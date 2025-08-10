@@ -44,4 +44,50 @@ journey
 
         ![hello egui!](res/image.png)
 
-- next, panama
+- panama, episode 1
+    - https://jornvernee.github.io/java/panama/rust/panama-ffi/2021/09/03/rust-panama-helloworld.html
+    - cargo add cbindgen
+    - cargo build
+
+    ```shell
+    error: failed to parse manifest at `\Cargo.toml`
+
+    Caused by:
+        can't find library `rusty_playground`, rename file to `src/lib.rs` or specify lib.path
+    ```
+
+    - cargo install cbindgen
+        - still err
+        - cargo uninstall cbindgen
+    
+    - ohhh, it's [build-dependencies] not [dependencies], my mind somehow didn't diff the two
+
+
+    - from above article,, modified
+        ```shell
+        jextract -d classes -t org.openjdk --include-function hello_world -l egui_panama -- lib.h
+        ```
+        - error, duh, download add jextract to path (https://jdk.java.net/jextract/)
+
+        - error again, now hmm
+        ```powershell
+        jextract : File \jextract-22\bin\jextract.ps1 cannot be loaded. The file \jextract-22\bin\jextract.ps1 is not digitally 
+        signed. You cannot run this script on the current system. For more information about running scripts and setting execution policy, see about_Execution_Policies at 
+        https:/go.microsoft.com/fwlink/?LinkID=135170.
+        ```
+
+        - solution don't run in powershell
+
+        - error, the command in the article is old and not working
+
+        - this works
+        ```shell
+        jextract --output "target/java-classes" -t org.openjdk --include-function hello_world -l egui_panama lib.h
+        ```
+
+        - change build.rs so it outputs to "target/headers
+        ```shell
+        jextract --output "target/java-classes" -t org.openjdk --include-function hello_world -l egui_panama target/headers/lib.h
+        ```
+
+- next, panama ep 2
