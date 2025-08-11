@@ -117,3 +117,8 @@ javac --source=22 -d java/classes java/src/self/chera/*.java
 
 java --enable-preview --enable-native-access=ALL-UNNAMED -Djava.library.path=./target/debug -cp ./java/classes HelloRustFromJava.java
 ```
+
+
+
+- the egui
+    - vibing with chatgpt, it sucks, go some ideas, then learning from https://github.com/kaphula/winit-egui-wgpu-template
